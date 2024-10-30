@@ -83,7 +83,7 @@ if 'chat_history' not in st.session_state:
 st.set_page_config(page_icon='🍊', page_title='UTAdvisor')
 
 # Streamlit page content.
-st.title('🍊 💻 UTAdvisor for CSE')
+st.title('🍊 💻 UTAdvisor for CS')
 st.info('Hi! I am UTAdvisor, your undergrad CS advisor. I know everything about the UT Austin CS program. Ask me anything!')
 
 # Print the converstation history.
