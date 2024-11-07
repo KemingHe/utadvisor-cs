@@ -55,14 +55,17 @@ def get_relevant_refs(query):
 
 # Get the response stream based on the user query.
 def get_response_stream(query, chat_history):
+    current_year: int = datetime.now().year
     relevant_refs = get_relevant_refs(query)
     relevant_docs = [ref.page_content for ref in relevant_refs]
     template = '''
     You are an undergrad research advisor for the Department of Computer Science at the University of Texas at Austin. 
     You are helping students with their questions about general CS concepts, program and career advise, and most importantly, research and faculty connections.
     You are given the chat history so far, the user question, and top relevant official info from the cs.utexas.edu website.
-    Be concise in your response, and prioritize the most up-to-date information.
+    Be concise in your response, and prioritize the most up-to-date information to current year.
     When appropriate, use bullet points to list multiple items.
+
+    Current year: {current_year}
 
     Chat history: {chat_history}
 
@@ -73,6 +76,7 @@ def get_response_stream(query, chat_history):
     prompt = ChatPromptTemplate.from_template(template)
     chain = prompt | llm | StrOutputParser()
     response_stream = chain.stream({
+        'current_year': current_year,
         'chat_history': chat_history,
         'user_question': query,
         'relevent_info': '\n'.join(relevant_docs)
