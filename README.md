@@ -1,2 +1,3 @@
-# buck-ai-guide-cse-faculties
-Streamit RAG app utilizing LangChain, Openai, and Pinecone to recommend OSU CSE Department faculties to users.
+# UTAdvisor CS
+
+Streamit RAG undergrad AI advisor for UTA CS program, utilizing LangChain, Openai, and Pinecone.
